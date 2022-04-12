@@ -1,3 +1,4 @@
 django
 django-dotenv
 mysqlclient==2.0.0
+Pillow
