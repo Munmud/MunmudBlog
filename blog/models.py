@@ -14,8 +14,6 @@ class Category(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
-        if not self.imageAltText:
-            self.imageAltText = self.title
         return super().save(*args, **kwargs)
 
 #Post Model
