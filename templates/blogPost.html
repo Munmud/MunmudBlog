@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Munmud Blog {% endblock%}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css'%}" />
+
+{% endblock css %}
+
+
+
+{% block content %}
+
+<div class="main_blog_details">
+    <img class="img-fluid" src="{{post.image.url}}" alt="">
+    <a href="single-blog.html#">
+        <h4>{{post.title}}</h4>
+    </a>
+    <div class="user_details">
+        <div class="float-left">
+            <a href="single-blog.html#">Lifestyle</a>
+            <a href="single-blog.html#">Gadget</a>
+        </div>
+        <div class="float-right">
+            <div class="media">
+                <div class="media-body">
+                    <!-- <h5>Moontasir Mahmood</h5> -->
+                    <p>{{post.add_date|date}}</p>
+                </div>
+                <div class="d-flex">
+                    <!-- <img src=" post.user.avater.url " alt=""> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {{post.content | safe}}
+    <div class="news_d_footer">
+        <a href="single-blog.html#"><i class="fa-solid fa-eye"></i>{{post.visitorCount}} Visitors</a>
+        <a class="justify-content-center ml-auto" href="single-blog.html#"><i
+                class="fa-solid fa-comments"></i>{{post.comments.count}}
+            Comments</a>
+        <div class="news_socail ml-auto">
+            <a href="single-blog.html#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="single-blog.html#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="single-blog.html#"><i class="fa-brands fa-pinterest"></i></a>
+
+        </div>
+    </div>
+</div>
+<div class="navigation-area">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+            <div class="detials">
+                {% if previousPost%}
+                <p>Prev Post</p>
+                <a href="{% url 'single_post' previousPost.slug %}">
+                    <h4>{{previousPost.title}}</h4>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+            <div class="detials">
+                {% if nextPost %}
+                <p>Next Post</p>
+                <a href="{% url 'single_post' nextPost.slug %}">
+                    <h4>{{nextPost.title}}</h4>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="comments-area">
+    <h4>{{post.comments.count}} Comments</h4>
+    {% for comment in post.comments.all %}
+    <div class="comment-list">
+        <div class="single-comment justify-content-between d-flex">
+            <div class="user justify-content-between d-flex">
+                <!-- <div class="thumb">
+                    <img src="{% static 'imgages/V9A.jpg' %}" alt="">
+                </div> -->
+                <div class="desc">
+                    <h5>{{comment.name}}</h5>
+                    <!-- <p class="date">{{comment.date_added.date}} </p> -->
+                    <p class="comment">{{comment.body}}</p>
+                </div>
+            </div>
+            <div class="reply-btn">
+                <!-- <a href="single-blog.html" class="btn-reply text-uppercase">reply</a>
+                 -->
+                <p class="date">{{comment.date_added|timesince}} </p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- <div class="comment-list left-padding">
+        <div class="single-comment justify-content-between d-flex">
+            <div class="user justify-content-between d-flex">
+                <div class="thumb">
+                    <img src="{% static 'images/7VIw.jpg' %}" alt="">
+                </div>
+                <div class="desc">
+                    <h5><a href="single-blog.html#">Elsie Cunningham</a></h5>
+                    <p class="date">December 4, 2017 at 3:12 pm </p>
+                    <p class="comment">
+                        Never say goodbye till the end comes!
+                    </p>
+                </div>
+            </div>
+            <div class="reply-btn">
+                <a href="single-blog.html" class="btn-reply text-uppercase">reply</a>
+            </div>
+        </div>
+    </div> -->
+
+</div>
+
+<div class="comment-form">
+    <h4>Leave a Reply</h4>
+    <div class="form-group form-inline">
+        <div class="form-group col-lg-6 col-md-6 name">
+            <input id="commentNameId" type="text" class="form-control" placeholder="Enter Name"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Name'">
+        </div>
+        <div class="form-group col-lg-6 col-md-6 email">
+            <input id="commentEmailId" type="email" class="form-control" placeholder="Enter email address"
+                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
+        </div>
+    </div>
+    <div class="form-group">
+        <textarea id="commentMessageId" class="form-control mb-10" rows="5" name="message" placeholder="Messege"
+            onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required></textarea>
+    </div>
+    <button onclick="saveComment()" class="primary-btn submit_btn">Post Comment</button>
+</div>
+{% endblock content %}
+
+
+{% block js %}
+<script type="text/javascript">
+    const saveComment = () => {
+        $.ajax({
+            type: "POST",
+            url: "{% url 'single_post' post.slug  %}",
+            data: {
+                commentEmail: String($('#commentEmailId').val()),
+                commentName: String($('#commentNameId').val()),
+                commentMessage: String($('#commentMessageId').val()),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                dataType: "json",
+            },
+
+            success: function (data) {
+                if (data.msg) {
+                    alert(data.msg);
+                }
+                else {
+                    location.reload();
+                }
+            },
+
+            failure: function (data) {
+                alert('Something is wrong... Check your internet connection');
+            }
+        });
+    }
+</script>
+{% endblock %}

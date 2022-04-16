@@ -1,0 +1,322 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Munmud Blog {% endblock%}
+
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/style.css'%}" />
+
+{% endblock css %}
+
+{% block js %}
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<div class="blog_left_sidebar">
+
+    {% if posts.0 %}
+    <article class="blog_style1">
+        <div class="blog_img">
+            <img class="img-fluid" src="{{posts.0.image.url}}" alt="">
+        </div>
+        <div class="blog_text">
+            <div class="blog_text_inner">
+                <div class="cat">
+                    <a class="cat_btn" href="{% url 'single_post' posts.0.slug %}">{{posts.0.cat.title}}</a>
+                    <a href="{% url 'single_post' posts.0.slug %}">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        {{ posts.0.add_date.date}}
+                    </a>
+                    <a href="{% url 'single_post' posts.0.slug %}"><i class="fa-solid fa-comments"
+                            aria-hidden="true"></i>
+                        {{posts.0.comments.count}}
+                    </a>
+                    <a href="{% url 'single_post' posts.0.slug %}"><i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        {{posts.0.visitorCount}}
+                    </a>
+                </div>
+                <a href="{% url 'single_post' posts.0.slug %}">
+                    <h4>{{posts.0.title}}</h4>
+                </a>
+                <p>{{ posts.0.content |truncatewords:30 |safe }}</p>
+                <a class="blog_btn" href="{% url 'single_post' posts.0.slug %}">Read More</a>
+            </div>
+        </div>
+    </article>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6">
+            {% if posts.1 %}
+            <article class="blog_style1 small">
+                <div class="blog_img">
+                    <img class="img-fluid" src="{{posts.1.image.url}}" alt="">
+                </div>
+                <div class="blog_text">
+                    <div class="blog_text_inner">
+                        <div class="cat">
+                            <a class="cat_btn" href="{% url 'single_post' posts.1.slug %}">{{posts.1.cat.title}}</a>
+                            <a href="{% url 'single_post' posts.1.slug %}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                {{ posts.1.add_date.date}}
+                            </a>
+                            <a href="{% url 'single_post' posts.1.slug %}"><i class="fa-solid fa-comments"
+                                    aria-hidden="true"></i>
+                                {{posts.1.comments.count}}
+                            </a>
+                            <a href="{% url 'single_post' posts.1.slug %}"><i class="fa-solid fa-eye"
+                                    aria-hidden="true"></i>
+                                {{posts.1.visitorCount}}
+                            </a>
+                        </div>
+                        <a href="{% url 'single_post' posts.1.slug %}">
+                            <h4>{{posts.1.title}}</h4>
+                        </a>
+                        <p>{{ posts.1.content |truncatewords:30 |safe }}</p>
+                        <a class="blog_btn" href="{% url 'single_post' posts.1.slug %}">Read More</a>
+                    </div>
+                </div>
+            </article>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {% if posts.2 %}
+            <article class="blog_style1 small">
+                <div class="blog_img">
+                    <img class="img-fluid" src="{{posts.2.image.url}}" alt="">
+                </div>
+                <div class="blog_text">
+                    <div class="blog_text_inner">
+                        <div class="cat">
+                            <a class="cat_btn" href="{% url 'single_post' posts.2.slug %}">{{posts.2.cat.title}}</a>
+                            <a href="{% url 'single_post' posts.2.slug %}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                {{ posts.2.add_date.date}}
+                            </a>
+                            <a href="{% url 'single_post' posts.2.slug %}"><i class="fa-solid fa-comments"
+                                    aria-hidden="true"></i>
+                                {{posts.2.comments.count}}
+                            </a>
+                            <a href="{% url 'single_post' posts.2.slug %}"><i class="fa-solid fa-eye"
+                                    aria-hidden="true"></i>
+                                {{posts.2.visitorCount}}
+                            </a>
+                        </div>
+                        <a href="{% url 'single_post' posts.2.slug %}">
+                            <h4>{{posts.2.title}}</h4>
+                        </a>
+                        <p>{{ posts.2.content |truncatewords:30 |safe }}</p>
+                        <a class="blog_btn" href="{% url 'single_post' posts.2.slug %}">Read More</a>
+                    </div>
+                </div>
+            </article>
+            {% endif %}
+        </div>
+    </div>
+    {% if posts.3 %}
+    <article class="blog_style1">
+        <div class="blog_img">
+            <img class="img-fluid" src="{{posts.3.image.url}}" alt="">
+        </div>
+        <div class="blog_text">
+            <div class="blog_text_inner">
+                <div class="cat">
+                    <a class="cat_btn" href="{% url 'single_post' posts.3.slug %}">{{posts.3.cat.title}}</a>
+                    <a href="{% url 'single_post' posts.3.slug %}">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        {{ posts.3.add_date.date}}
+                    </a>
+                    <a href="{% url 'single_post' posts.3.slug %}"><i class="fa-solid fa-comments"
+                            aria-hidden="true"></i>
+                        {{posts.3.comments.count}}
+                    </a>
+                    <a href="{% url 'single_post' posts.3.slug %}"><i class="fa-solid fa-eye" aria-hidden="true"></i>
+                        {{posts.3.visitorCount}}
+                    </a>
+                </div>
+                <a href="{% url 'single_post' posts.3.slug %}">
+                    <h4>{{posts.3.title}}</h4>
+                </a>
+                <p>{{ posts.3.content |truncatewords:30 |safe }}</p>
+                <a class="blog_btn" href="{% url 'single_post' posts.3.slug %}">Read More</a>
+            </div>
+        </div>
+    </article>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6">
+            {% if posts.4 %}
+            <article class="blog_style1 small">
+                <div class="blog_img">
+                    <img class="img-fluid" src="{{posts.4.image.url}}" alt="">
+                </div>
+                <div class="blog_text">
+                    <div class="blog_text_inner">
+                        <div class="cat">
+                            <a class="cat_btn" href="{% url 'single_post' posts.4.slug %}">{{posts.4.cat.title}}</a>
+                            <a href="{% url 'single_post' posts.4.slug %}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                {{ posts.4.add_date.date}}
+                            </a>
+                            <a href="{% url 'single_post' posts.4.slug %}"><i class="fa-solid fa-comments"
+                                    aria-hidden="true"></i>
+                                {{posts.4.comments.count}}
+                            </a>
+                            <a href="{% url 'single_post' posts.4.slug %}"><i class="fa-solid fa-eye"
+                                    aria-hidden="true"></i>
+                                {{posts.4.visitorCount}}
+                            </a>
+                        </div>
+                        <a href="{% url 'single_post' posts.4.slug %}">
+                            <h4>{{posts.4.title}}</h4>
+                        </a>
+                        <p>{{ posts.4.content |truncatewords:30 |safe }}</p>
+                        <a class="blog_btn" href="{% url 'single_post' posts.4.slug %}">Read More</a>
+                    </div>
+                </div>
+            </article>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {% if posts.5 %}
+            <article class="blog_style1 small">
+                <div class="blog_img">
+                    <img class="img-fluid" src="{{posts.5.image.url}}" alt="">
+                </div>
+                <div class="blog_text">
+                    <div class="blog_text_inner">
+                        <div class="cat">
+                            <a class="cat_btn" href="{% url 'single_post' posts.5.slug %}">{{posts.5.cat.title}}</a>
+                            <a href="{% url 'single_post' posts.5.slug %}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                {{ posts.5.add_date.date}}
+                            </a>
+                            <a href="{% url 'single_post' posts.5.slug %}"><i class="fa-solid fa-comments"
+                                    aria-hidden="true"></i>
+                                {{posts.5.comments.count}}
+                            </a>
+                            <a href="{% url 'single_post' posts.5.slug %}"><i class="fa-solid fa-eye"
+                                    aria-hidden="true"></i>
+                                {{posts.5.visitorCount}}
+                            </a>
+                        </div>
+                        <a href="{% url 'single_post' posts.5.slug %}">
+                            <h4>{{posts.5.title}}</h4>
+                        </a>
+                        <p>{{ posts.5.content |truncatewords:30 |safe }}</p>
+                        <a class="blog_btn" href="{% url 'single_post' posts.5.slug %}">Read More</a>
+                    </div>
+                </div>
+            </article>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {% if posts.6 %}
+            <article class="blog_style1 small">
+                <div class="blog_img">
+                    <img class="img-fluid" src="{{posts.6.image.url}}" alt="">
+                </div>
+                <div class="blog_text">
+                    <div class="blog_text_inner">
+                        <div class="cat">
+                            <a class="cat_btn" href="{% url 'single_post' posts.6.slug %}">{{posts.6.cat.title}}</a>
+                            <a href="{% url 'single_post' posts.6.slug %}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                {{ posts.6.add_date.date}}
+                            </a>
+                            <a href="{% url 'single_post' posts.6.slug %}"><i class="fa-solid fa-comments"
+                                    aria-hidden="true"></i>
+                                {{posts.6.comments.count}}
+                            </a>
+                            <a href="{% url 'single_post' posts.6.slug %}"><i class="fa-solid fa-eye"
+                                    aria-hidden="true"></i>
+                                {{posts.6.visitorCount}}
+                            </a>
+                        </div>
+                        <a href="{% url 'single_post' posts.6.slug %}">
+                            <h4>{{posts.6.title}}</h4>
+                        </a>
+                        <p>{{ posts.6.content |truncatewords:30 |safe }}</p>
+                        <a class="blog_btn" href="{% url 'single_post' posts.6.slug %}">Read More</a>
+                    </div>
+                </div>
+            </article>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {% if posts.7 %}
+            <article class="blog_style1 small">
+                <div class="blog_img">
+                    <img class="img-fluid" src="{{posts.7.image.url}}" alt="">
+                </div>
+                <div class="blog_text">
+                    <div class="blog_text_inner">
+                        <div class="cat">
+                            <a class="cat_btn" href="{% url 'single_post' posts.7.slug %}">{{posts.7.cat.title}}</a>
+                            <a href="{% url 'single_post' posts.7.slug %}">
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                {{ posts.7.add_date.date}}
+                            </a>
+                            <a href="{% url 'single_post' posts.7.slug %}"><i class="fa-solid fa-comments"
+                                    aria-hidden="true"></i>
+                                {{posts.7.comments.count}}
+                            </a>
+                            <a href="{% url 'single_post' posts.7.slug %}"><i class="fa-solid fa-eye"
+                                    aria-hidden="true"></i>
+                                {{posts.7.visitorCount}}
+                            </a>
+                        </div>
+                        <a href="{% url 'single_post' posts.7.slug %}">
+                            <h4>{{posts.7.title}}</h4>
+                        </a>
+                        <p>{{ posts.7.content |truncatewords:30 |safe }}</p>
+                        <a class="blog_btn" href="{% url 'single_post' posts.7.slug %}">Read More</a>
+                    </div>
+                </div>
+            </article>
+            {% endif %}
+        </div>
+    </div>
+    <nav class="blog-pagination justify-content-center d-flex">
+        <ul class="pagination">
+
+            {% if posts.has_previous %}
+            <li class="page-item">
+                <a href="?page={{posts.previous_page_number}}" class="page-link" aria-label="Previous">
+                    <i class="fa-solid fa-angles-left"></i>
+                </a>
+            </li>
+
+            <li class="page-item"><a href="?page=1" class="page-link">1</a></li>
+            {% if posts.number != 2 %}
+            <li class="page-item "><a href="?page={{posts.previous_page_number}}"
+                    class="page-link">{{posts.previous_page_number}}</a></li>
+            {% endif %}
+            {% endif %}
+
+            <li class="page-item active"><a disabled href="#" class="page-link">{{posts.number}}</a></li>
+            {% if posts.has_next %}
+
+            {% if posts.next_page_number != posts.paginator.num_pages %}
+            <li class="page-item"><a href="?page={{posts.next_page_number}}"
+                    class="page-link">{{posts.next_page_number}}</a></li>
+            {% endif %}
+
+            <li class="page-item"><a href="?page={{posts.paginator.num_pages}}" class="page-link">
+                    {{posts.paginator.num_pages}}</a></li>
+            <li class="page-item">
+                <a href="?page={{posts.next_page_number}}" class="page-link" aria-label="Next">
+                    <i class="fa-solid fa-angles-right"></i>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+{% endblock content %}
