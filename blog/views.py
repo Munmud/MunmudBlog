@@ -67,7 +67,19 @@ def BlogPost(request, slug):
     return render(request,'blogPost.html',context)
 
 def CategoryView(request,slug):
-    pass
+    context = {}
+    cat = Category.objects.get(slug=slug)
+    posts = Post.objects.filter(cat = cat)
+
+
+    #setup Paginator
+    p = Paginator(Post.objects.filter(cat = cat),8)
+    page = request.GET.get('page')
+    posts = p.get_page(page)
+
+    context['posts'] = posts
+    context.update(SideBarWork())
+    return render(request,'blogHome.html',context)
 
 def searchPost(request):
     if 'searchPost' in request.GET:

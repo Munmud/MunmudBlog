@@ -1,5 +1,5 @@
 - Add tags
 - Emailing Subscriber
-- implement comment without reloading
 - adding alt
 - post fb share
+- bangla font add
