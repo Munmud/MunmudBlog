@@ -1,0 +1,4 @@
+- Add tags
+- Emailing Subscriber
+- implement comment without reloading
+- adding alt
