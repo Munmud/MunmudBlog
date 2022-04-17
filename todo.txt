@@ -3,3 +3,6 @@
 - adding alt
 - post fb share
 - bangla font add
+- footer newsletter email input clear after successful submission
+- singleblog template title click
+

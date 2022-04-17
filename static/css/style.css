@@ -2767,8 +2767,8 @@ h6 {
 
 .blog_style1.small .blog_text .blog_text_inner .cat .cat_btn {
     display: block;
-    width: 86px;
-    margin-bottom: 12px
+    margin-bottom: 12px;
+    text-align: center;
 }
 
 .blog_style1.small .blog_text .blog_text_inner h4 {

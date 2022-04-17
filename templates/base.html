@@ -30,7 +30,7 @@
                 <div class="container box_1620">
 
                     <a class="navbar-brand logo_h" href="{% url 'home'%}"><img width="300px"
-                            src="{% static 'images/HeadLogo.png' %}" alt=""></a>
+                            src="{% static 'images/logo.jpg' %}" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +54,19 @@
                                     {% endfor %}
                                 </ul>
                             </li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="   #" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                    aria-haspopup="true" aria-expanded="false">Services</a>
+                                <ul class="dropdown-menu">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="http://url.moontasir.com/">
+                                            URL shortner
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
 
                         </ul>
                         <ul class="nav navbar-nav navbar-right header_social ml-auto">
@@ -72,8 +85,8 @@
         </div>
         <div class="logo_part">
             <div class="container">
-                <a class="logo" href="{% url 'home' %}"><img style="width: 300px;"
-                        src="{% static 'images/HeadLogo.png' %}" alt=""></a>
+                <a class="logo" href="{% url 'home' %}"><img style="width: 300px;" src="{% static 'images/logo.jpg' %}"
+                        alt=""></a>
             </div>
         </div>
     </header>
