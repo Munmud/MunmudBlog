@@ -85,7 +85,6 @@ def CategoryView(request,slug):
 def searchPost(request):
     if 'searchPost' in request.GET:
         value = request.GET['searchPost']
-
         pp = Post.objects.filter(content__contains=value)
 
         context = {}
