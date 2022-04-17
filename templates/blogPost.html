@@ -13,9 +13,7 @@
 
 <div class="main_blog_details">
     <img class="img-fluid" src="{{post.image.url}}" alt="">
-    <a href="single-blog.html#">
-        <h4>{{post.title}}</h4>
-    </a>
+    <h4>{{post.title}}</h4>
     <div class="user_details">
         <div class="float-left">
             <a href="single-blog.html#">Lifestyle</a>
@@ -35,9 +33,8 @@
     </div>
     {{post.content | safe}}
     <div class="news_d_footer">
-        <a href="single-blog.html#"><i class="fa-solid fa-eye"></i>{{post.visitorCount}} Visitors</a>
-        <a class="justify-content-center ml-auto" href="single-blog.html#"><i
-                class="fa-solid fa-comments"></i>{{post.comments.count}}
+        <a href="#"><i class="fa-solid fa-eye"></i>{{post.visitorCount}} Visitors</a>
+        <a class="justify-content-center ml-auto" href="#"><i class="fa-solid fa-comments"></i>{{post.comments.count}}
             Comments</a>
         <div class="news_socail ml-auto">
             {% post_to_facebook object_or_url %}

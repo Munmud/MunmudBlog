@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from django.db.models import Count
 from django.http import JsonResponse
 from django.core.validators import validate_email
+from django.contrib import messages
 
 def SideBarWork():
     context={}
@@ -84,7 +85,6 @@ def CategoryView(request,slug):
 def searchPost(request):
     if 'searchPost' in request.GET:
         value = request.GET['searchPost']
-        print("Value = ",value)
 
         pp = Post.objects.filter(content__contains=value)
 
@@ -107,16 +107,40 @@ def emailSubscription(request):
 
         try :
             validate_email(email) #cheking if email and last_name have value
-            e = EmailSubscriber(email=email)
-            e.save()
+            try:
+                obj = EmailSubscriber.objects.get(email=email)
+                obj.is_active = True
+                obj.save()
+            except :
+                e = EmailSubscriber(email=email)
+                e.save()
             response = {
                 'msg': 'Your email has been saved successfully'
             }
             return JsonResponse(response) # return response as JSON
         except Exception as e :
-            print(e)
             response = {
                 'msg': str(e),
             }
             return JsonResponse(response)
+    pass
+
+def unsubscribeEmail(request,pk):
+    try :
+        email = EmailSubscriber.objects.get(uuid = pk)
+        email.is_active = False
+        email.save()
+        messages.success(request, 'Successfully Unsubscribed')
+        
+        context = {}
+        context.update(SideBarWork())
+        return render(request,'blogHome.html',context)
+
+    except :
+        messages.error(request, 'Not valid Link')
+        
+        context = {}
+        context.update(SideBarWork())
+        return render(request,'blogHome.html',context)
+
     pass

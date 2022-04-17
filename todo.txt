@@ -1,6 +1,5 @@
 - Add tags
 - adding alt
-- post fb share
 - bangla font add
 - singleblog template title click
 - send email for new post
