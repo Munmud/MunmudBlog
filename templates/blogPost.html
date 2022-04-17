@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load social_share %}
 {% block title %} Moontasir's Blog {% endblock%}
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/style.css'%}" />
@@ -39,9 +40,10 @@
                 class="fa-solid fa-comments"></i>{{post.comments.count}}
             Comments</a>
         <div class="news_socail ml-auto">
-            <a href="single-blog.html#"><i class="fa-brands fa-facebook"></i></a>
-            <a href="single-blog.html#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="single-blog.html#"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="{% post_to_facebook_url object_or_url %}"><i class="fa-brands fa-facebook"></i></a>
+            <a href="{% post_to_whatsapp_url object_or_url %}"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="{% save_to_pinterest_url object_or_url %}"><i class="fa-brands fa-pinterest"></i></a>
+            <a href="{% post_to_linkedin_url object_or_url %}"><i class="fa-brands fa-linkedin"></i></a>
 
         </div>
     </div>
