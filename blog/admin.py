@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Post, Comment
+from .models import Category, Post, Comment, EmailSubscriber
 
 
 # Register your models here.
@@ -16,8 +16,13 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('cat',)
     list_per_page = 50
 
+class EmailSubscriberAdmin(admin.ModelAdmin):
+    list_display = ('email','is_active',)
+    list_per_page = 50
+
 
 
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(EmailSubscriber, EmailSubscriberAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment)

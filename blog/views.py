@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post, Category, Comment
+from .models import Post, Category, Comment, EmailSubscriber
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.http import JsonResponse
@@ -107,6 +107,8 @@ def emailSubscription(request):
 
         try :
             validate_email(email) #cheking if email and last_name have value
+            e = EmailSubscriber(email=email)
+            e.save()
             response = {
                 'msg': 'Your email has been saved successfully'
             }

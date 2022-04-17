@@ -1,3 +1,5 @@
+from operator import mod
+import uuid
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.template.defaultfilters import slugify
@@ -56,3 +58,17 @@ class Comment(models.Model):
         return self.name
     
     
+class EmailSubscriber(models.Model):
+    email=models.EmailField(null=False,blank=False,unique=True)
+    is_active= models.BooleanField(default=True)
+    uuid = models.CharField(max_length=10)
+
+    def save(self, *args, **kwargs):
+        if not self.uuid:
+            self.uuid = str(uuid.uuid4())[:9]
+        
+        return super().save(*args, **kwargs)
+    
+    def __str__(self):
+        return self.email
+
