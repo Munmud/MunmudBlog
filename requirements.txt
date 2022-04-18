@@ -4,3 +4,4 @@ mysqlclient==2.0.0
 Pillow
 django-ckeditor
 django-social-share
+django-taggit

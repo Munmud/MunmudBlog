@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Post, Category, Comment, EmailSubscriber
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.http import JsonResponse
 from django.core.validators import validate_email
 from django.contrib import messages
+from taggit.models import Tag
 
 def SideBarWork():
     context={}
@@ -101,6 +102,19 @@ def searchPost(request):
         return render(request,'blogHome.html',context)
     pass
 
+def TagView(request, slug):
+    tag = get_object_or_404(Tag, slug = slug)
+    posts = Post.objects.filter(tags = tag)
+    context = {}
+
+    #setup Paginator
+    p = Paginator(Post.objects.filter(tags = tag),8)
+    page = request.GET.get('page')
+    posts = p.get_page(page)
+
+    context['posts'] = posts
+    context.update(SideBarWork())
+    return render(request,'blogHome.html',context)
 
 def emailSubscription(request):
     if request.is_ajax():

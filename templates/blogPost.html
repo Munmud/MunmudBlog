@@ -16,8 +16,9 @@
     <h4>{{post.title}}</h4>
     <div class="user_details">
         <div class="float-left">
-            <a href="single-blog.html#">Lifestyle</a>
-            <a href="single-blog.html#">Gadget</a>
+            {% for tag in post.tags.all %}
+            <a href="{% url 'Tag' tag %}">{{tag}}</a>
+            {% endfor %}
         </div>
         <div class="float-right">
             <div class="media">

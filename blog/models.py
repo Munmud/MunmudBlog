@@ -3,6 +3,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.template.defaultfilters import slugify
 import os
+from taggit.managers import TaggableManager
 
 #Category Model
 class Category(models.Model):
@@ -31,6 +32,7 @@ class Post(models.Model):
     add_date = models.DateTimeField(auto_now_add=True)
     visitorCount = models.IntegerField(default=0,null=True, blank=True)
     status = models.CharField(max_length=250,choices=post_status, default="pending")
+    tags = TaggableManager()
 
 
     class Meta:
