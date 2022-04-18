@@ -91,16 +91,6 @@
         </div>
     </header>
 
-    {% for message in messages %}
-    <div class="container-fluid p-0">
-        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="True">&times;</span>
-            </button>
-            {{ message }}
-        </div>
-    </div>
-    {% endfor %}
 
 
 
@@ -138,6 +128,16 @@
     <section class="blog_area p_120">
         <div class="container">
             <div class="row">
+                {% for message in messages %}
+                <div class="container-fluid p-0">
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="True">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                </div>
+                {% endfor %}
                 <div class="col-lg-8">
                     {% block content %}
                     {% endblock content %}

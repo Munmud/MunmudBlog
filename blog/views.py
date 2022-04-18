@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.core.validators import validate_email
 from django.contrib import messages
 from taggit.models import Tag
+from better_profanity import profanity
 
 def SideBarWork():
     context={}
@@ -40,6 +41,8 @@ def BlogPost(request, slug):
             validate_email(email)
             assert(len(name)>0)
             assert(len(message)>0)
+            name = profanity.censor(name)
+            message = profanity.censor(message)
             comment = Comment(name=name,email=email,body=message, post=post)
             comment.save()
             response = {
