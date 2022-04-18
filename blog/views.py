@@ -41,6 +41,8 @@ def BlogPost(request, slug):
             assert(len(message)>0)
             comment = Comment(name=name,email=email,body=message, post=post)
             comment.save()
+            response = {
+            }
             return JsonResponse(response)
         except Exception as e:
             response = {

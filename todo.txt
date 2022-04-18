@@ -2,4 +2,3 @@
 - adding alt
 - bangla font add
 - singleblog template title click
-- send email for new post
