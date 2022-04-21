@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Contact Me {% endblock%}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css'%}" />
+
+{% endblock css %}
+
+
+
+{% block content %}
+<section class="contact_area p_120">
+    <div class="container">
+        <div class="">
+            <form class="row contact_form" action="contact_process.htm" method="post" id="contactForm" novalidate>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" name="email"
+                            placeholder="Enter email address">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" id="message" rows="1"
+                            placeholder="Enter Message"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12 text-right">
+                    <button type="submit" value="submit" class="btn submit_btn">Send Message</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+{% endblock content %}
+
+
+{% block js %}
+
+{% if navText %}
+
+<script type="text/javascript">
+    navText = "{{navText}}";
+    a = $(".nav-item");
+    for (var i = 0; i < a.length; i++) {
+        for (var j = 0; j < a[i].childNodes.length; j++) {
+            if (a[i].childNodes[j].text) {
+                if (a[i].childNodes[j].text == navText)
+                    a[i].classList.add("active");
+            }
+        }
+    }
+</script>
+
+{% endif %}
+
+{% endblock %}

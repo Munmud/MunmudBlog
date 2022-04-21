@@ -41,12 +41,12 @@
 
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav">
-                            <li class="nav-item active"><a class="nav-link" href="{% url 'home'%}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'home'%}">Home</a></li>
 
-                            <li class="nav-item submenu dropdown">
+                            <li class="nav-item submenu dropdown show">
                                 <a href="   #" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Category</a>
-                                <ul class="dropdown-menu">
+                                    aria-haspopup="true" aria-expanded="true">Category</a>
+                                <ul class="dropdown-menu show">
                                     {% for category in categorys %}
                                     <li class="nav-item"><a class="nav-link"
                                             href="{% url 'Category' category.slug %}">{{category.title}}</a>
@@ -54,18 +54,19 @@
                                     {% endfor %}
                                 </ul>
                             </li>
-                            <li class="nav-item submenu dropdown">
+                            <li class="nav-item submenu dropdown show">
                                 <a href="   #" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-haspopup="true" aria-expanded="false">Services</a>
-                                <ul class="dropdown-menu">
+                                    aria-haspopup="true" aria-expanded="true">Services</a>
+                                <ul class="dropdown-menu show">
 
                                     <li class="nav-item">
-                                        <a class="nav-link" href="http://url.moontasir.com/">
-                                            URL shortner
-                                        </a>
+                                        <a class="nav-link" href="http://url.moontasir.com/">URL shortner</a>
                                     </li>
 
                                 </ul>
+                            </li>
+
+                            <li class="nav-item "><a class="nav-link" href="{% url 'ContactMe'%}">Contact Me</a>
                             </li>
 
                         </ul>
@@ -298,6 +299,22 @@
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <!-- Navbar toggler -->
+    <script type="text/javascript">
+        btn = $(".navbar-toggler")
+        btn.click((e) => {
+            if (btn.attr("aria-expanded") == "false") {
+                btn.attr("aria-expanded", "true");
+                $('.navbar-collapse.offset.collapse').addClass("show");
+            }
+            else {
+                btn.attr("aria-expanded", "false");
+                $('.navbar-collapse.offset.collapse').removeClass("show");
+            }
+        })
+    </script>
+
+    <!-- Sidebar formform -->
     <script type="text/javascript">
         const searchPost = () => {
             let filter = document.getElementById('searchPostId').value;

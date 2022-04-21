@@ -1,3 +1,6 @@
 - adding alt
 - bangla font add
 - singleblog template title click
+- email verification
+- cf rank mail
+- resume generator  

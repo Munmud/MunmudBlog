@@ -1,11 +1,12 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import BlogHome, BlogPost, CategoryView, searchPost, emailSubscription, unsubscribeEmail, TagView
+from .views import BlogHome, BlogPost, CategoryView, searchPost, emailSubscription, unsubscribeEmail, TagView, ContactMe
 
 # app_name = 'blog'
 urlpatterns = [
     path('', BlogHome, name='home'),
+    path('ContactMe/', ContactMe, name='ContactMe'),
     path('blog/<slug:slug>/', BlogPost, name='single_post'),
     path('category/<slug:slug>/', CategoryView, name='Category'),
     path('tag/<slug:slug>/', TagView, name='Tag'),

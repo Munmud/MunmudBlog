@@ -6,3 +6,4 @@ django-ckeditor
 django-social-share
 django-taggit
 better_profanity
+CodeforcesApiPy

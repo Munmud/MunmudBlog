@@ -25,7 +25,8 @@ def BlogHome(request):
 
     context['posts'] = posts
     context.update(SideBarWork())
-    return render(request,'blogHome.html',context)
+    context['navText'] = 'Home'
+    return render(request,'blog/blogHome.html',context)
 
 
 def BlogPost(request, slug):
@@ -71,7 +72,7 @@ def BlogPost(request, slug):
 
     context.update(SideBarWork())
 
-    return render(request,'blogPost.html',context)
+    return render(request,'blog/blogPost.html',context)
 
 def CategoryView(request,slug):
     context = {}
@@ -86,7 +87,8 @@ def CategoryView(request,slug):
 
     context['posts'] = posts
     context.update(SideBarWork())
-    return render(request,'blogHome.html',context)
+    context['navText'] = cat.title
+    return render(request,'blog/blogHome.html',context)
 
 def searchPost(request):
     if 'searchPost' in request.GET:
@@ -102,7 +104,7 @@ def searchPost(request):
 
         context['posts'] = posts
         context.update(SideBarWork())
-        return render(request,'blogHome.html',context)
+        return render(request,'blog/blogHome.html',context)
     pass
 
 def TagView(request, slug):
@@ -117,7 +119,7 @@ def TagView(request, slug):
 
     context['posts'] = posts
     context.update(SideBarWork())
-    return render(request,'blogHome.html',context)
+    return render(request,'blog/blogHome.html',context)
 
 def emailSubscription(request):
     if request.is_ajax():
@@ -162,3 +164,11 @@ def unsubscribeEmail(request,pk):
         return render(request,'blogHome.html',context)
 
     pass
+
+
+def ContactMe(request):
+    context =  {}
+    context.update(SideBarWork())
+    context['navText'] = 'Contact Me'
+    
+    return render(request, 'blog/contactMe.html', context)

@@ -9,8 +9,24 @@
 {% endblock css %}
 
 {% block js %}
-
+{% if navText %}
+<script type="text/javascript">
+    navText = "{{navText}}";
+    a = $(".nav-item");
+    for (var i = 0; i < a.length; i++) {
+        for (var j = 0; j < a[i].childNodes.length; j++) {
+            if (a[i].childNodes[j].text) {
+                if (a[i].childNodes[j].text == navText) {
+                    a[i].classList.add("active");
+                }
+            }
+        }
+    }
+</script>
+{% endif %}
 {% endblock %}
+
+
 
 
 {% block content %}
