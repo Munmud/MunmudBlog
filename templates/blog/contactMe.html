@@ -12,7 +12,7 @@
 <section class="contact_area p_120">
     <div class="container">
         <div class="">
-            <form class="row contact_form" action="contact_process.htm" method="post" id="contactForm" novalidate>
+            <div class="row contact_form" id="contactForm">
                 <div class="col-md-6">
                     <div class="form-group">
                         <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
@@ -32,9 +32,10 @@
                     </div>
                 </div>
                 <div class="col-md-12 text-right">
-                    <button type="submit" value="submit" class="btn submit_btn">Send Message</button>
+                    <button onclick="contact()" type="submit" value="submit" class="btn submit_btn">Send
+                        Message</button>
                 </div>
-            </form>
+            </div>
         </div>
 
     </div>
@@ -45,8 +46,8 @@
 
 {% block js %}
 
+<!-- Nav Design -->
 {% if navText %}
-
 <script type="text/javascript">
     navText = "{{navText}}";
     a = $(".nav-item");
@@ -59,7 +60,38 @@
         }
     }
 </script>
-
 {% endif %}
+
+<!-- form submit -->
+<script type="text/javascript">
+    const contact = () => {
+        $.ajax({
+            type: "POST",
+            url: "{% url 'ContactMe' %}",
+            data: {
+                name: String($('#name').val()),
+                email: String($('#email').val()),
+                subject: String($('#subject').val()),
+                message: String($('#message').val()),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                dataType: "json",
+            },
+
+            success: function (data) {
+                if (data.msg) {
+                    alert(data.msg);
+                }
+                else {
+                    location.reload();
+                }
+            },
+
+            failure: function (data) {
+                alert('Something is wrong... Check your internet connection');
+            }
+        });
+    }
+</script>);
+}
 
 {% endblock %}

@@ -7,6 +7,8 @@ from django.core.validators import validate_email
 from django.contrib import messages
 from taggit.models import Tag
 from better_profanity import profanity
+import os
+
 
 def SideBarWork():
     context={}
@@ -167,6 +169,43 @@ def unsubscribeEmail(request,pk):
 
 
 def ContactMe(request):
+    if request.is_ajax():
+        name = request.POST.get('name', None)
+        email = request.POST.get('email', None)
+        message = request.POST.get('message', None)
+        subject = request.POST.get('subject', None)
+
+        try :
+            validate_email(email)
+            assert(len(name)>0)
+            assert(len(message)>0)
+            assert(len(subject)>0)
+
+            from django.core.mail import send_mail
+
+            send_mail(
+                subject,
+                "Name : "
+                + name + "\n" 
+                + "Email : "
+                + email + "\n"
+                + message,
+                str(os.environ.get('EMAIL__admin_HOST_USER')),
+                ['moontasir042@gmail.com'],
+                fail_silently=False,
+                auth_user = str(os.environ.get('EMAIL__admin_HOST_USER')),
+                auth_password= str(os.environ.get('EMAIL__admin_HOST_PASSWORD'))
+            )
+
+            response = {
+            }
+            return JsonResponse(response)
+        except Exception as e:
+            response = {
+                'msg': "Message data not valid, " + str(e),
+            }
+            return JsonResponse(response)
+        
     context =  {}
     context.update(SideBarWork())
     context['navText'] = 'Contact Me'
