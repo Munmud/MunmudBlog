@@ -4,3 +4,4 @@
 - email verification
 - cf rank mail
 - resume generator  
+- add admin email
