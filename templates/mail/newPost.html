@@ -1,426 +1,187 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>New Post Released</title>
-    <style>
-        /*All the styling goes here*/
-
-        img {
-            border: none;
-            -ms-interpolation-mode: bicubic;
-            max-width: 100%;
-        }
-
-        body {
-            background-color: #f6f6f6;
-            font-family: sans-serif;
-            -webkit-font-smoothing: antialiased;
-            font-size: 14px;
-            line-height: 1.4;
-            margin: 0;
-            padding: 0;
-            -ms-text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        table {
-            border-collapse: separate;
-            width: 100%;
-        }
-
-        table td {
-            font-family: sans-serif;
-            font-size: 14px;
-            vertical-align: top;
-        }
-
-        /* -------------------------------------
-          BODY & CONTAINER
-      ------------------------------------- */
-
-        .body {
-            background-color: #f6f6f6;
-            width: 100%;
-        }
-
-        /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
-        .container {
-            display: block;
-            margin: 0 auto !important;
-            /* makes it centered */
-            max-width: 580px;
-            padding: 10px;
-            width: 580px;
-        }
-
-        /* This should also be a block element, so that it will fill 100% of the .container */
-        .content {
-            box-sizing: border-box;
-            display: block;
-            margin: 0 auto;
-            max-width: 580px;
-            padding: 10px;
-        }
-
-        /* -------------------------------------
-          HEADER, FOOTER, MAIN
-      ------------------------------------- */
-        .main {
-            background: #ffffff;
-            border-radius: 3px;
-            width: 100%;
-        }
-
-        .wrapper {
-            box-sizing: border-box;
-            padding: 20px;
-        }
-
-        .content-block {
-            padding-bottom: 10px;
-            padding-top: 10px;
-        }
-
-        .footer {
-            clear: both;
-            margin-top: 10px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .footer td,
-        .footer p,
-        .footer span,
-        .footer a {
-            color: #999999;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        /* -------------------------------------
-          TYPOGRAPHY
-      ------------------------------------- */
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: #000000;
-            font-family: sans-serif;
-            font-weight: 400;
-            line-height: 1.4;
-            margin: 0;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            font-size: 35px;
-            font-weight: 300;
-            text-align: center;
-            text-transform: capitalize;
-        }
-
-        p,
-        ul,
-        ol {
-            font-family: sans-serif;
-            font-size: 14px;
-            font-weight: normal;
-            margin: 0;
-            margin-bottom: 15px;
-        }
-
-        p li,
-        ul li,
-        ol li {
-            list-style-position: inside;
-            margin-left: 5px;
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: underline;
-        }
-
-        /* -------------------------------------
-          BUTTONS
-      ------------------------------------- */
-        .btn {
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        .btn>tbody>tr>td {
-            padding-bottom: 15px;
-        }
-
-        .btn table {
-            width: auto;
-        }
-
-        .btn table td {
-            background-color: #ffffff;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .btn a {
-            background-color: #ffffff;
-            border: solid 1px #3498db;
-            border-radius: 5px;
-            box-sizing: border-box;
-            color: #3498db;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 14px;
-            font-weight: bold;
-            margin: 0;
-            padding: 12px 25px;
-            text-decoration: none;
-            text-transform: capitalize;
-        }
-
-        .btn-primary table td {
-            background-color: #3498db;
-        }
-
-        .btn-primary a {
-            background-color: #3498db;
-            border-color: #3498db;
-            color: #ffffff;
-        }
-
-        /* -------------------------------------
-          OTHER STYLES THAT MIGHT BE USEFUL
-      ------------------------------------- */
-        .last {
-            margin-bottom: 0;
-        }
-
-        .first {
-            margin-top: 0;
-        }
-
-        .align-center {
-            text-align: center;
-        }
-
-        .align-right {
-            text-align: right;
-        }
-
-        .align-left {
-            text-align: left;
-        }
-
-        .clear {
-            clear: both;
-        }
-
-        .mt0 {
-            margin-top: 0;
-        }
-
-        .mb0 {
-            margin-bottom: 0;
-        }
-
-        .preheader {
-            color: transparent;
-            display: none;
-            height: 0;
-            max-height: 0;
-            max-width: 0;
-            opacity: 0;
-            overflow: hidden;
-            visibility: hidden;
-            width: 0;
-        }
-
-        .powered-by a {
-            text-decoration: none;
-        }
-
-        hr {
-            border: 0;
-            border-bottom: 1px solid #f6f6f6;
-            margin: 20px 0;
-        }
-
-        /* -------------------------------------
-          RESPONSIVE AND MOBILE FRIENDLY STYLES
-      ------------------------------------- */
-        @media only screen and (max-width: 620px) {
-            table.body h1 {
-                font-size: 28px !important;
-                margin-bottom: 10px !important;
-            }
-
-            table.body p,
-            table.body ul,
-            table.body ol,
-            table.body td,
-            table.body span,
-            table.body a {
-                font-size: 16px !important;
-            }
-
-            table.body .wrapper,
-            table.body .article {
-                padding: 10px !important;
-            }
-
-            table.body .content {
-                padding: 0 !important;
-            }
-
-            table.body .container {
-                padding: 0 !important;
-                width: 100% !important;
-            }
-
-            table.body .main {
-                border-left-width: 0 !important;
-                border-radius: 0 !important;
-                border-right-width: 0 !important;
-            }
-
-            table.body .btn table {
-                width: 100% !important;
-            }
-
-            table.body .btn a {
-                width: 100% !important;
-            }
-
-            table.body .img-responsive {
-                height: auto !important;
-                max-width: 100% !important;
-                width: auto !important;
-            }
-        }
-
-        /* -------------------------------------
-          PRESERVE THESE STYLES IN THE HEAD
-      ------------------------------------- */
-        @media all {
-            .ExternalClass {
-                width: 100%;
-            }
-
-            .ExternalClass,
-            .ExternalClass p,
-            .ExternalClass span,
-            .ExternalClass font,
-            .ExternalClass td,
-            .ExternalClass div {
-                line-height: 100%;
-            }
-
-            .apple-link a {
-                color: inherit !important;
-                font-family: inherit !important;
-                font-size: inherit !important;
-                font-weight: inherit !important;
-                line-height: inherit !important;
-                text-decoration: none !important;
-            }
-
-            #MessageViewBody a {
-                color: inherit;
-                text-decoration: none;
-                font-size: inherit;
-                font-family: inherit;
-                font-weight: inherit;
-                line-height: inherit;
-            }
-
-            .btn-primary table td:hover {
-                background-color: #34495e !important;
-            }
-
-            .btn-primary a:hover {
-                background-color: #34495e !important;
-                border-color: #34495e !important;
-            }
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
-<body>
-    <span class="preheader">New post Released in moontasir's Blog</span>
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
-        <tr>
-            <td>&nbsp;</td>
-            <td class="container">
-                <div class="content">
+<body style="box-sizing: border-box; margin: 0;">
+    <table class="main-body"
+        style="box-sizing: border-box; min-height: 150px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%; height: 100%; background-color: rgb(234, 236, 237);"
+        width="100%" height="100%" bgcolor="rgb(234, 236, 237)">
+        <tbody style="box-sizing: border-box;">
+            <tr class="row" style="box-sizing: border-box; vertical-align: top;" valign="top">
+                <td class="main-body-cell" style="box-sizing: border-box;">
+                    <table class="container"
+                        style="box-sizing: border-box; font-family: Helvetica, serif; min-height: 150px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: auto; margin-right: auto; margin-bottom: auto; margin-left: auto; height: 0px; width: 90%; max-width: 550px;"
+                        width="90%" height="0">
+                        <tbody style="box-sizing: border-box;">
+                            <tr style="box-sizing: border-box;">
+                                <td class="container-cell"
+                                    style="box-sizing: border-box; vertical-align: top; font-size: medium; padding-bottom: 50px;"
+                                    valign="top">
+                                    <table class="c1766"
+                                        style="box-sizing: border-box; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: 0px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%; min-height: 30px;"
+                                        width="100%">
+                                        <tbody style="box-sizing: border-box;">
+                                            <tr style="box-sizing: border-box;">
+                                                <td class="cell c1769" style="box-sizing: border-box; width: 11%;"
+                                                    width="11%">
+                                                    <img src="{{domain}}/static/images/logo.jpg" alt="Logo."
+                                                        class="c926"
+                                                        style="box-sizing: border-box; color: rgb(158, 83, 129); width: 100%; font-size: 50px;">
+                                                </td>
+                                                <td class="cell c1776"
+                                                    style="box-sizing: border-box; width: 70%; vertical-align: middle;"
+                                                    width="70%" valign="middle">
+                                                    <div class="c1144"
+                                                        style="box-sizing: border-box; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; font-size: 17px; font-weight: 300;">
+                                                        Moontasir&#039;s Blog
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="card"
+                                        style="box-sizing: border-box; min-height: 150px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-bottom: 20px; height: 0px;"
+                                        height="0">
+                                        <tbody style="box-sizing: border-box;">
+                                            <tr style="box-sizing: border-box;">
+                                                <td class="card-cell"
+                                                    style="box-sizing: border-box; background-color: rgb(255, 255, 255); overflow-x: hidden; overflow-y: hidden; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; text-align: center;"
+                                                    bgcolor="rgb(255, 255, 255)" align="center">
+                                                    <img src="{{domain}}{{ MEDIA_URL }}{{image}}"
+                                                        alt="Thumbnail-popular" class="c1271"
+                                                        style="box-sizing: border-box; width: 100%; margin-top: 0px; margin-right: 0px; margin-bottom: 15px; margin-left: 0px; font-size: 50px; color: rgb(120, 197, 214); line-height: 250px; text-align: center;">
+                                                    <table class="table100 c1357"
+                                                        style="box-sizing: border-box; width: 100%; min-height: 150px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-collapse: collapse;"
+                                                        width="100%" height="0">
+                                                        <tbody style="box-sizing: border-box;">
+                                                            <tr style="box-sizing: border-box;">
+                                                                <td class="card-content"
+                                                                    style="box-sizing: border-box; font-size: 13px; line-height: 20px; color: rgb(111, 119, 125); padding-top: 10px; padding-right: 20px; padding-bottom: 0px; padding-left: 20px; vertical-align: top;"
+                                                                    valign="top">
+                                                                    <h1 class="card-title"
+                                                                        style="box-sizing: border-box; font-size: 15px; font-weight: 700; color: rgb(68, 68, 68); text-align: justify;">
+                                                                        {{title}}
+                                                                    </h1>
+                                                                    <p class="card-text"
+                                                                        style="box-sizing: border-box; font-size: 11px;">
+                                                                        {{desc|safe|truncatewords:30}}
+                                                                    </p>
+                                                                    <table class="c1542"
+                                                                        style="box-sizing: border-box; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%;"
+                                                                        width="100%">
+                                                                        <tbody style="box-sizing: border-box;">
+                                                                            <tr style="box-sizing: border-box;">
+                                                                                <td id="c1545" class="card-footer"
+                                                                                    style="box-sizing: border-box; padding-top: 20px; padding-right: 0px; padding-bottom: 20px; padding-left: 0px; text-align: center;"
+                                                                                    align="center">
+                                                                                    <a href="{{domain}}{% url 'single_post' slug %}"
+                                                                                        class="button"
+                                                                                        style="box-sizing: border-box; font-size: 12px; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; background-color: rgb(217, 131, 166); color: rgb(255, 255, 255); text-align: center; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; font-weight: 300;">View
+                                                                                        Full Article</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div id="in81g"
+                                        style="box-sizing: border-box; padding: 10px; text-align: center; font-weight: 700;">
+                                        Popular Posts
+                                    </div>
+                                    {% for post in Popular_Posts %}
+                                    <table class="list-item"
+                                        style="box-sizing: border-box; height: auto; width: 100%; margin-top: 0px; margin-right: auto; margin-bottom: 10px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;"
+                                        width="100%">
+                                        <tbody style="box-sizing: border-box;">
+                                            <tr style="box-sizing: border-box;">
+                                                <td class="list-item-cell"
+                                                    style="box-sizing: border-box; background-color: rgb(255, 255, 255); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; overflow-x: hidden; overflow-y: hidden; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;"
+                                                    bgcolor="rgb(255, 255, 255)">
+                                                    <table class="list-item-content"
+                                                        style="box-sizing: border-box; border-collapse: collapse; margin-top: 0px; margin-right: auto; margin-bottom: 0px; margin-left: auto; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; height: 150px; width: 100%;"
+                                                        width="100%" height="150">
+                                                        <tbody style="box-sizing: border-box;">
+                                                            <tr class="list-item-row" style="box-sizing: border-box;">
+                                                                <td class="list-cell-left"
+                                                                    style="box-sizing: border-box; width: 30%; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px;"
+                                                                    width="30%">
+                                                                    <img src="{{domain}}{{ MEDIA_URL }}{{post.image}}"
+                                                                        alt="Image" class="list-item-image"
+                                                                        style="box-sizing: border-box; color: rgb(217, 131, 166); font-size: 45px; width: 100%;">
+                                                                </td>
+                                                                <td class="list-cell-right"
+                                                                    style="box-sizing: border-box; width: 70%; color: rgb(111, 119, 125); font-size: 13px; line-height: 20px; padding-top: 10px; padding-right: 20px; padding-bottom: 0px; padding-left: 20px;"
+                                                                    width="70%">
+                                                                    <h1 class="card-title"
+                                                                        style="box-sizing: border-box; font-size: 15px; font-weight: 700; color: rgb(68, 68, 68); text-align: justify;">
+                                                                        {{post.title}}
+                                                                    </h1>
+                                                                    <p class="card-text"
+                                                                        style="box-sizing: border-box; font-size: 11px;">
+                                                                        {{post.content|safe|truncatewords:20}}
+                                                                    </p>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    {% endfor %}
 
-                    <!-- START CENTERED WHITE CONTAINER -->
-                    <table role="presentation" class="main">
-
-                        <!-- START MAIN CONTENT AREA -->
-                        <tr>
-                            <td class="wrapper">
-                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <td>
-                                            <p>Hi there,</p>
-                                            <p>A new post has been published in <a
-                                                    href="https://moontasir.com/">Moontasir's Blog</a>
-                                                regarding
-                                            </p>
-                                            <h3><strong>{{title}}</strong></h3>
-                                            <table role="presentation" border="0" cellpadding="0" cellspacing="0"
-                                                class="btn btn-primary">
-                                                <tbody>
-                                                    <tr>
-                                                        <td align="left">
-                                                            <table role="presentation" border="0" cellpadding="0"
-                                                                cellspacing="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td> <a href="{{domain}}{% url 'single_post' slug %}"
-                                                                                target="_blank">View Full Article</a>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                            <p>Good luck! See you in our website.</p>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-
-                        <!-- END MAIN CONTENT AREA -->
-                    </table>
-                    <!-- END CENTERED WHITE CONTAINER -->
-
-                    <!-- START FOOTER -->
-                    <div class="footer">
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td class="content-block">
-                                    <!-- <span class="apple-link">Company Inc, 3 Abbey Road, San Francisco CA 94102</span> -->
-                                    <br> Don't like these emails? <a
-                                        href="{{domain}}{% url 'unsubscribeEmail' id %}">Unsubscribe</a>.
+                                    <table class="footer"
+                                        style="box-sizing: border-box; margin-top: 50px; color: rgb(152, 156, 165); text-align: center; font-size: 11px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;"
+                                        align="center">
+                                        <tbody style="box-sizing: border-box;">
+                                            <tr style="box-sizing: border-box;">
+                                                <td class="footer-cell" style="box-sizing: border-box;">
+                                                    <div class="c2577"
+                                                        style="box-sizing: border-box; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+                                                        <p class="footer-info" style="box-sizing: border-box;">You ar
+                                                            receiving this email because you have submitted your email
+                                                            in our website. However if you are not the one who submit
+                                                            this email, Then you can always&nbsp;
+                                                            <a data-cke-saved-href="{{domain}}{% url 'unsubscribeEmail' id %}"
+                                                                href="{{domain}}{% url 'unsubscribeEmail' id %}"
+                                                                style="box-sizing: border-box;">Unsubscribe</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="c2421"
+                                                        style="box-sizing: border-box; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+                                                        MADE BY
+                                                        <a id="ienl36" data-gjs-type="link" draggable="true"
+                                                            data-cke-saved-href="https://moontasir.com"
+                                                            href="https://moontasir.com" class="link"
+                                                            style="box-sizing: border-box;">Moontasir Mahmood</a>
+                                                        <p id="id6nbn" data-gjs-type="text" draggable="true"
+                                                            style="box-sizing: border-box;">
+                                                            <br style="box-sizing: border-box;">
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </td>
                             </tr>
-                        </table>
-                    </div>
-                    <!-- END FOOTER -->
-
-                </div>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </body>
 

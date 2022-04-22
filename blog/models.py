@@ -4,6 +4,8 @@ from ckeditor.fields import RichTextField
 from django.template.defaultfilters import slugify
 import os
 from taggit.managers import TaggableManager
+from django.db.models import Count
+from django.conf import settings
 
 #Category Model
 class Category(models.Model):
@@ -113,6 +115,7 @@ def sendMail(sender, instance,*args, **kwargs):
         if previous.status == 'pending' and instance.status == 'approaved': # field is updated
 
             datatuple = []
+            popularPosts = Post.objects.annotate(num_items=Count('comments')).order_by('-visitorCount','-num_items')[:4]
             for x in EmailSubscriber.objects.all():
                 if x.is_active:
                     email = x.email
@@ -121,6 +124,10 @@ def sendMail(sender, instance,*args, **kwargs):
                     mp['slug'] = instance.slug
                     mp['id'] = x.uuid
                     mp['domain'] = os.environ.get('ALLOWED_HOSTS').split(',')[1]
+                    mp['desc'] = instance.content
+                    mp['image'] = instance.image
+                    mp['Popular_Posts'] = popularPosts
+                    mp['MEDIA_URL'] = settings.MEDIA_URL
 
                     from django.template.loader import render_to_string
                     from django.utils.html import strip_tags
