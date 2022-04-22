@@ -156,14 +156,14 @@ def unsubscribeEmail(request,pk):
         
         context = {}
         context.update(SideBarWork())
-        return render(request,'blogHome.html',context)
+        return render(request,'blog/blogHome.html',context)
 
     except :
         messages.error(request, 'Not valid Link')
         
         context = {}
         context.update(SideBarWork())
-        return render(request,'blogHome.html',context)
+        return render(request,'blog/blogHome.html',context)
 
     pass
 
