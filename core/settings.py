@@ -65,6 +65,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {'charset': 'utf8mb4'},
         'NAME': str(os.environ.get('DATABASE_NAME')),
         'HOST': 'localhost',
         'USER': str(os.environ.get('DATABASE_USER')),
