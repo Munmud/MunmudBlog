@@ -34,6 +34,16 @@ class CheckNewContest(CronJobBase):
                         except Exception as e:
                             print(e)
                     
+            #Remove previous contest
+            for contest in Contest.objects.filter(isParsed = True):
+                delta = now-contest.date
+                if (delta.days>5):
+                    print('Deleting ' + contest.name)
+                    temp = contest
+                    contest.delete()
+                    temp.save()
+
+                    
             #Add one more contest details to database
             obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
             date = obj.date
@@ -52,12 +62,7 @@ class CheckNewContest(CronJobBase):
                 sendMail(obj)
                 pass
 
-            #Remove previous contest
-            for contest in Contest.objects.filter(isParsed = True):
-                delta = now-contest.date
-                if (delta.days>5):
-                    print('Deleting ' + contest.name)
-                    contest.delete()
+
 
         except Exception as e :
             print(e)
