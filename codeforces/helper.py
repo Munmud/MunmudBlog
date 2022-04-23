@@ -185,7 +185,7 @@ def saveRankToDatabase(contest_id, contest_ranking):
 
 def saveContestToDatabase(contest):
     try :
-        for rank in Rank.organization.filter(contest = contest):
+        for rank in Rank.objects.filter(contest = contest):
             rank.delete()
         contest.isSend = False
         contest.isParsed = False
