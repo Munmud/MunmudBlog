@@ -190,7 +190,6 @@ def saveContestToDatabase(contest):
         contest.isSend = False
         contest.isParsed = False
         contest.save()
-        
         standing= getContestStanding(contest_id = contest.id)
         assert(len(standing) != 0)
         print('Cf Standing Count = ', len(standing))
