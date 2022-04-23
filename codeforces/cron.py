@@ -187,6 +187,7 @@ def saveRankToDatabase(contest_id, contest_ranking):
         contest.save()
         print('successfully Parsed')
     except Exception as e:
+        print(e , len(Rank.objects.filter(id = contest.id)))
         contest.tryCount = contest.tryCount+1
         contest.save()
         return
