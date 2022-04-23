@@ -190,11 +190,9 @@ def ContactMe(request):
                 + "Email : "
                 + email + "\n"
                 + message,
-                str(os.environ.get('EMAIL__admin_HOST_USER')),
+                'Admin Message <' + str(os.environ.get('EMAIL_HOST_USER')) + '>',
                 [str(os.environ.get('EMAIL_OF_ADMIN'))],
                 fail_silently=False,
-                auth_user = str(os.environ.get('EMAIL__admin_HOST_USER')),
-                auth_password= str(os.environ.get('EMAIL__admin_HOST_PASSWORD'))
             )
 
             response = {

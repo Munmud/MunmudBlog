@@ -76,14 +76,11 @@ class PostAdmin(admin.ModelAdmin):
                     subject = "Moontasir's Blog"
                     html_message = render_to_string('mail/newPost.html', mp)
                     plain_message = strip_tags(html_message)
-                    from_email = str(os.environ.get('EMAIL__new_post'))
+                    from_email = "Moontasir's New Post <" + str(os.environ.get('EMAIL_HOST_USER')) + '>'
                     tple = (subject,plain_message,html_message,from_email,[email])
                     datatuple.append(tple)
             
-            send_mass_html_mail(datatuple,
-                    user = str(os.environ.get('EMAIL__new_post_HOST_USER')),
-                    password=str(os.environ.get('EMAIL__new_post_HOST_PASSWORD'))
-                )
+            send_mass_html_mail(datatuple,)
             break
 
 

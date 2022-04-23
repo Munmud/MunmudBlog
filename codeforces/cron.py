@@ -74,17 +74,14 @@ def sendMail(contest):
                 subject = "Codeforces Rank for " + str(contest.name) 
                 html_message = render_to_string('mail/cfRank.html', context)
                 plain_message = strip_tags(html_message)
-                from_email = str(os.environ.get('EMAIL__CodeforcesRank_HOST_USER'))
+                from_email = 'Codeforces Rank <' + str(os.environ.get('EMAIL_HOST_USER')) + '>'
                 tple = (subject,plain_message,html_message,from_email,[email])
                 datatuple.append(tple)
                 print(handle, " -> participated")
             except Exception as e: 
                 print(handle, " -> didn't participated")
         
-        send_mass_html_mail(datatuple,
-            user = str(os.environ.get('EMAIL__CodeforcesRank_HOST_USER')),
-            password=str(os.environ.get('EMAIL__CodeforcesRank_HOST_PASSWORD'))
-        )
+        send_mass_html_mail(datatuple)
         contest.isSend = True 
         contest.save()
     except Exception as e :

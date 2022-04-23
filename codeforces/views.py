@@ -61,14 +61,11 @@ def formView(request):
             subject = "Moontasir's Blog"
             html_message = render_to_string('mail/emailVerification.html', mp)
             plain_message = strip_tags(html_message)
-            from_email = str(os.environ.get('EMAIL__VerifyEmail_HOST_USER'))
+            from_email = 'Verify Email <' + str(os.environ.get('EMAIL_HOST_USER')) + '>'
             tple = (subject,plain_message,html_message,from_email,[email_address])
             datatuple.append(tple)
             
-            send_mass_html_mail(datatuple,
-                    user = str(os.environ.get('EMAIL__VerifyEmail_HOST_USER')),
-                    password=str(os.environ.get('EMAIL__VerifyEmail_HOST_PASSWORD'))
-                )
+            send_mass_html_mail(datatuple)
             
             response = {
                 'success': "We have sent a confirmation email. Please login to your email account to verify",
