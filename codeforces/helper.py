@@ -178,26 +178,24 @@ def saveRankToDatabase(contest_id, contest_ranking):
                 globalRank = globalRank+1
             )
             rank.save()
-        contest.isParsed = True
-        contest.save()
-        print('successfully Parsed')
+        
     except Exception as e:
-        print(e , len(Rank.objects.filter(id = contest.id)))
-        contest.tryCount = contest.tryCount+1
-        contest.save()
-        return
+        print(e)
 
 
-def saveContestToDatabase(contest_id):
+def saveContestToDatabase(contest):
     try :
-        standing= getContestStanding(contest_id = contest_id)
+        standing= getContestStanding(contest_id = contest.id)
         print('Cf Standing Count = ', len(standing))
         handleDetails = requestCodeforcesToGetDetailsOfHandles(standing)
         print('Cf Parse handle-details Count = ', len(handleDetails))
         assert(len(handleDetails) != 0)
-        saveRankToDatabase(contest_id = contest_id, contest_ranking = handleDetails)
+        saveRankToDatabase(contest_id = contest.id, contest_ranking = handleDetails)
+        assert(len(Rank.objects.filter(contest = contest)) != 0)
+        contest.isParsed = True
+        contest.save()
+        print('successfully Parsed')
     except Exception as e :
         print(e)
-        contest = Contest.objects.get(id = contest_id)
         contest.tryCount = contest.tryCount+1
         contest.save()

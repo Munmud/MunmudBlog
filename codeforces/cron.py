@@ -19,6 +19,7 @@ class CheckNewContest(CronJobBase):
         print('Cron is running')
         try :
 
+            now = datetime.now().replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
             #Refresh ContestList
             for x in codeforces_api.CodeforcesApi().contest_list():
                 if (x.phase == 'FINISHED' ):
@@ -36,22 +37,28 @@ class CheckNewContest(CronJobBase):
             #Add one more contest details to database
             obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
             date = obj.date
-            now = datetime.now().replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
             delta = now-date
             if (delta.days <=3):
                 print("Initiating...",obj.id,obj.name)
-                saveContestToDatabase(obj.id)
+                saveContestToDatabase(obj)
 
 
             #send Latest Contest Mail
             obj = Contest.objects.filter(isSend = False).order_by('-date')[:1][0]
-            now = datetime.now().replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
             date = obj.date
             delta = now-date
             if (delta.days <=2):
                 print('Sending Mail...' , obj.name)
                 sendMail(obj)
                 pass
+
+            #Remove previous contest
+            for contest in Contest.objects.filter(isParsed = True):
+                delta = now-contest.date
+                if (delta.days>5):
+                    print('Deleting ' + contest.name)
+                    contest.delete()
+
         except Exception as e :
             print(e)
             pass

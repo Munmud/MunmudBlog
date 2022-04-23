@@ -31,13 +31,13 @@ class ContestAdmin(admin.ModelAdmin):
 
     def perseContest(self, request, queryset):
         for obj in queryset:
-            saveContestToDatabase(obj.id)
+            saveContestToDatabase(obj)
             break
     
     def sendRankMail(self, request, queryset):
         for obj in queryset:
             if (obj.isParsed == False):
-                saveContestToDatabase(obj.id)
+                saveContestToDatabase(obj)
             sendMail(obj)
             break
 
