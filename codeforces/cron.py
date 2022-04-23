@@ -53,7 +53,7 @@ class CheckNewContest(CronJobBase):
                 print("Initiating...",obj.id,obj.name)
                 saveContestToDatabase(obj)
             except Exception as e:
-                print(e)
+                print("ALL recent rank are parsed.",e )
 
             try:
                 #send Latest Contest Mail
