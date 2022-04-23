@@ -185,7 +185,13 @@ def saveRankToDatabase(contest_id, contest_ranking):
 
 def saveContestToDatabase(contest):
     try :
+        contest.isSend = False
+        contest.isParsed = False
+        contest.save()
+        for rank in Rank.organization.filter(contest = contest):
+            rank.delete()
         standing= getContestStanding(contest_id = contest.id)
+        assert(len(standing) != 0)
         print('Cf Standing Count = ', len(standing))
         handleDetails = requestCodeforcesToGetDetailsOfHandles(standing)
         print('Cf Parse handle-details Count = ', len(handleDetails))

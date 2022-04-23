@@ -38,7 +38,7 @@ class CheckNewContest(CronJobBase):
             obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
             date = obj.date
             delta = now-date
-            if (delta.days <=3):
+            if (delta.days <=10):
                 print("Initiating...",obj.id,obj.name)
                 saveContestToDatabase(obj)
 
