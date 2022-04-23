@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Handle, Contest, Rank
-from .cron import saveContestToDatabase, sendMail
+from .helper import saveContestToDatabase, sendMail
 # Register your models here.
 
 class HandleAdmin(admin.ModelAdmin):
