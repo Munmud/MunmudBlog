@@ -29,20 +29,20 @@ class CheckNewContest(CronJobBase):
                     except :
                         try:
                             date = datetime.utcfromtimestamp(x.start_time_seconds).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
-                            contest = Contest(id = x.id , name = str(x.name)[:254] , date = date)
-                            contest.save()
+                            delta = now-date
+                            if (delta.days<=10):
+                                contest = Contest(id = x.id , name = str(x.name)[:254] , date = date)
+                                contest.save()
                         except Exception as e:
                             print(e)
 
             #Remove previous contest
             try:
-                for contest in Contest.objects.filter(isParsed = True):
+                for contest in Contest.objects.all():
                     delta = now-contest.date
-                    if (delta.days>5):
+                    if (delta.days>10):
                         print('Deleting ' + contest.name)
-                        temp = contest
                         contest.delete()
-                        temp.save()
             except Exception as e:
                 print(e)
 
@@ -50,11 +50,8 @@ class CheckNewContest(CronJobBase):
             #Add one more contest details to database
             try:
                 obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
-                date = obj.date
-                delta = now-date
-                if (delta.days <=10):
-                    print("Initiating...",obj.id,obj.name)
-                    saveContestToDatabase(obj)
+                print("Initiating...",obj.id,obj.name)
+                saveContestToDatabase(obj)
             except Exception as e:
                 print(e)
 
