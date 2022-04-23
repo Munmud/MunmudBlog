@@ -120,7 +120,8 @@
                                                                     width="70%">
                                                                     <h1 class="card-title"
                                                                         style="box-sizing: border-box; font-size: 15px; font-weight: 700; color: rgb(68, 68, 68); text-align: justify;">
-                                                                        {{post.title}}
+                                                                        <a style="text-decoration: none; color: inherit;"
+                                                                            href="{{domain}}{% url 'single_post' post.slug %}">{{post.title}}</a>
                                                                     </h1>
                                                                     <p class="card-text"
                                                                         style="box-sizing: border-box; font-size: 11px;">
@@ -149,8 +150,8 @@
                                                             in our website. However if you are not the one who submit
                                                             this email, Then you can always&nbsp;
                                                             <a data-cke-saved-href="{{domain}}{% url 'unsubscribeEmail' id %}"
-                                                                href="{{domain}}{% url 'unsubscribeEmail' id %}"
-                                                                style="box-sizing: border-box;">Unsubscribe</a>
+                                                                style="box-sizing: border-box; text-decoration: none ;color: inherit;"
+                                                                href="{{domain}}{% url 'unsubscribeEmail' id %}">Unsubscribe</a>
                                                         </p>
                                                     </div>
                                                     <div class="c2421"

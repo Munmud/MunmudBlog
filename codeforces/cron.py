@@ -235,8 +235,11 @@ class CheckNewContest(CronJobBase):
             #Add one more contest details to database
             obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
             date = obj.date
-            print("Initiating...",obj.id,obj.name)
-            saveContestToDatabase(obj.id)
+            now = datetime.now().replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
+            delta = now-date
+            if (delta.days <=5):
+                print("Initiating...",obj.id,obj.name)
+                saveContestToDatabase(obj.id)
 
 
             #send Latest Contest Mail
