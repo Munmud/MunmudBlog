@@ -222,29 +222,30 @@ class CheckNewContest(CronJobBase):
             #Refresh ContestList
             for x in codeforces_api.CodeforcesApi().contest_list():
                 if (x.phase == 'FINISHED' ):
-                    try : 
-                        contest = Contest.objects.get(id = x.id)
-                    except :
-                        date = datetime.utcfromtimestamp(x.start_time_seconds).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
-                        contest = Contest(id = x.id , name = str(x.name) , date = date)
-                        contest.save()
+                    print(x.id , x.name)
+                    # try : 
+                    #     contest = Contest.objects.get(id = x.id)
+                    # except :
+                    #     date = datetime.utcfromtimestamp(x.start_time_seconds).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
+                    #     contest = Contest(id = x.id , name = str(x.name) , date = date)
+                    #     contest.save()
                     
-            #Add one more contest details to database
-            obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
-            date = obj.date
-            print("Initiating...",obj.id,obj.name)
-            saveContestToDatabase(obj.id)
+            # #Add one more contest details to database
+            # obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
+            # date = obj.date
+            # print("Initiating...",obj.id,obj.name)
+            # saveContestToDatabase(obj.id)
 
 
-            #send Latest Contest Mail
-            obj = Contest.objects.filter(isSend = False).order_by('-date')[:1][0]
-            now = datetime.now().replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
-            date = obj.date
-            delta = now-date
-            if (delta.days <=2):
-                print('Sending Mail...' , obj.name)
-                sendMail(obj)
-                pass
+            # #send Latest Contest Mail
+            # obj = Contest.objects.filter(isSend = False).order_by('-date')[:1][0]
+            # now = datetime.now().replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
+            # date = obj.date
+            # delta = now-date
+            # if (delta.days <=2):
+            #     print('Sending Mail...' , obj.name)
+            #     sendMail(obj)
+            #     pass
         except Exception as e :
             print(e)
             pass
