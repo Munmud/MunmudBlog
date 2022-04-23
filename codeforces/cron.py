@@ -220,20 +220,20 @@ class CheckNewContest(CronJobBase):
         try :
 
             #Refresh ContestList
-            # for x in codeforces_api.CodeforcesApi().contest_list():
-            #     if (x.phase == 'FINISHED' ):
-            #         try : 
-            #             contest = Contest.objects.get(id = x.id)
-            #         except :
-            #             date = datetime.utcfromtimestamp(x.start_time_seconds).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
-            #             contest = Contest(id = x.id , name = x.name , date = date)
-            #             contest.save()
+            for x in codeforces_api.CodeforcesApi().contest_list():
+                if (x.phase == 'FINISHED' ):
+                    try : 
+                        contest = Contest.objects.get(id = x.id)
+                    except :
+                        date = datetime.utcfromtimestamp(x.start_time_seconds).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
+                        contest = Contest(id = x.id , name = x.name , date = date)
+                        contest.save()
                     
             #Add one more contest details to database
-            # obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
-            # date = obj.date
-            # print("Initiating...",obj.id,obj.name)
-            # saveContestToDatabase(obj.id)
+            obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
+            date = obj.date
+            print("Initiating...",obj.id,obj.name)
+            saveContestToDatabase(obj.id)
 
 
             #send Latest Contest Mail
