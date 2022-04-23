@@ -226,9 +226,12 @@ class CheckNewContest(CronJobBase):
                     try : 
                         contest = Contest.objects.get(id = x.id)
                     except :
-                        date = datetime.utcfromtimestamp(x.start_time_seconds).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
-                        contest = Contest(id = x.id , name = str(x.name)[:254] , date = date)
-                        contest.save()
+                        try:
+                            date = datetime.utcfromtimestamp(x.start_time_seconds).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
+                            contest = Contest(id = x.id , name = str(x.name)[:254] , date = date)
+                            contest.save()
+                        except Exception as e:
+                            print(e)
                     
             #Add one more contest details to database
             obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
