@@ -222,7 +222,7 @@ class CheckNewContest(CronJobBase):
             #Refresh ContestList
             for x in codeforces_api.CodeforcesApi().contest_list():
                 if (x.phase == 'FINISHED' ):
-                    print(x.id , x.name)
+                    # print(x.id , x.name)
                     try : 
                         contest = Contest.objects.get(id = x.id)
                     except :
