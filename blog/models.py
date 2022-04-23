@@ -2,10 +2,7 @@ import uuid
 from django.db import models
 from ckeditor.fields import RichTextField
 from django.template.defaultfilters import slugify
-import os
 from taggit.managers import TaggableManager
-from django.db.models import Count
-from django.conf import settings
 
 #Category Model
 class Category(models.Model):
@@ -68,11 +65,11 @@ class Comment(models.Model):
 class EmailSubscriber(models.Model):
     email=models.EmailField(null=False,blank=False,unique=True)
     is_active= models.BooleanField(default=True)
-    uuid = models.CharField(max_length=10)
+    uuid = models.CharField(max_length=250)
 
     def save(self, *args, **kwargs):
         if not self.uuid:
-            self.uuid = str(uuid.uuid4())[:9]
+            self.uuid = str(uuid.uuid4())[:249]
         
         return super().save(*args, **kwargs)
     
@@ -80,69 +77,13 @@ class EmailSubscriber(models.Model):
         return self.email
 
 
-from django.core.mail import get_connection, EmailMultiAlternatives
-def send_mass_html_mail(datatuple, fail_silently=False, user=None, password=None, 
-                        connection=None):
-    """
-    Given a datatuple of (subject, text_content, html_content, from_email,
-    recipient_list), sends each message to each recipient list. Returns the
-    number of emails sent.
+# from django.db.models.signals import pre_save
+# from django.dispatch import receiver
+# @receiver(pre_save, sender=Post)
+# def sendMail(sender, instance,*args, **kwargs):
 
-    If from_email is None, the DEFAULT_FROM_EMAIL setting is used.
-    If auth_user and auth_password are set, they're used to log in.
-    If auth_user is None, the EMAIL_HOST_USER setting is used.
-    If auth_password is None, the EMAIL_HOST_PASSWORD setting is used.
-
-    """
-    connection = connection or get_connection( username=user, password=password, fail_silently=fail_silently)
-    messages = []
-    for subject, text, html, from_email, recipient in datatuple:
-        message = EmailMultiAlternatives(subject, text, from_email, recipient)
-        message.attach_alternative(html, 'text/html')
-        messages.append(message)
-    return connection.send_messages(messages)
-
-
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
-@receiver(pre_save, sender=Post)
-def sendMail(sender, instance,*args, **kwargs):
-
-    if instance.post_id is None: # new object will be created
-        pass 
-    else:
-        previous = sender.objects.get(post_id=instance.post_id)
-        if previous.status == 'pending' and instance.status == 'approaved': # field is updated
-
-            datatuple = []
-            popularPosts = Post.objects.annotate(num_items=Count('comments')).order_by('-visitorCount','-num_items')[:4]
-            for x in EmailSubscriber.objects.all():
-                if x.is_active:
-                    email = x.email
-                    mp = {}
-                    mp['title'] = instance.title
-                    mp['slug'] = instance.slug
-                    mp['id'] = x.uuid
-                    mp['domain'] = os.environ.get('ALLOWED_HOSTS').split(',')[1]
-                    mp['desc'] = instance.content
-                    mp['image'] = instance.image
-                    mp['Popular_Posts'] = popularPosts
-                    mp['MEDIA_URL'] = settings.MEDIA_URL
-
-                    from django.template.loader import render_to_string
-                    from django.utils.html import strip_tags
-
-                    subject = "Moontasir's Blog"
-                    html_message = render_to_string('mail/newPost.html', mp)
-                    plain_message = strip_tags(html_message)
-                    from_email = str(os.environ.get('EMAIL__new_post'))
-                    tple = (subject,plain_message,html_message,from_email,[email])
-                    datatuple.append(tple)
-            
-            send_mass_html_mail(datatuple,
-                    user = str(os.environ.get('EMAIL__new_post_HOST_USER')),
-                    password=str(os.environ.get('EMAIL__new_post_HOST_PASSWORD'))
-                )
-            
-
-    pass  
+#     if instance.post_id is None: # new object will be created
+#         pass 
+#     else:
+#         previous = sender.objects.get(post_id=instance.post_id)
+#         if previous.status == 'pending' and instance.status == 'approaved': # field is updated

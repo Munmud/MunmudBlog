@@ -20,6 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_social_share',
     'blog',
+    'codeforces',
+    'django_cron',
     'taggit',
     'ckeditor',
 ]
@@ -32,6 +34,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+CRON_CLASSES = [
+    "codeforces.cron.CheckNewContest",
+    # ...
 ]
 
 ROOT_URLCONF = 'core.urls'

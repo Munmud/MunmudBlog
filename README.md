@@ -16,3 +16,10 @@ EMAIL__new_post = 'new_post@moontasir.com'
 
 EMAIL__admin_HOST_USER = ''
 EMAIL__admin_HOST_PASSWORD = ''
+
+EMAIL__VerifyEmail_HOST_USER = ''
+EMAIL__VerifyEmail_HOST_PASSWORD = ''
+
+EMAIL_OF_ADMIN = ''
+EMAIL__CodeforcesRank_HOST_USER = ''
+EMAIL__CodeforcesRank_HOST_PASSWORD = ''

@@ -13,19 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path 
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import formView, confirmMail, unSubscribeCF
 
-from django.contrib import admin
-
-admin.site.site_header = 'Moontasir Admin Dashboard'     # default: "Django Administration"
-admin.site.index_title = 'Features area'                 # default: "Site administration"
-admin.site.site_title = 'Moontasir'
-
+app_name = 'codeforces'
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('blog.urls')),
-    path('codeforces/', include('codeforces.urls')),
+    path('form/', formView , name='cfForm'),
+    path('confirmMail/<str:uid>', confirmMail , name='confirmMail'),
+    path('unSubscribeCF/<str:uid>', unSubscribeCF , name='unSubscribeCF'),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
