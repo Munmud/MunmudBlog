@@ -66,6 +66,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'OPTIONS': {'charset': 'utf8mb4'},
+        'default-character-set' : 'utf8',
         'NAME': str(os.environ.get('DATABASE_NAME')),
         'HOST': 'localhost',
         'USER': str(os.environ.get('DATABASE_USER')),

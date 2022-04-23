@@ -55,6 +55,7 @@ def sendMail(contest):
                     'domain' : os.environ.get('ALLOWED_HOSTS').split(',')[1],
                     'unSubscribeId' : obj.uid,
                     'Popular_Posts' : popularPosts,
+                    'MEDIA_URL' : settings.MEDIA_URL
                 }
 
                 if rank.countryRank == None and rank.organizationRank == None :
