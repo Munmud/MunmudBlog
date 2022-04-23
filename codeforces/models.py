@@ -22,7 +22,7 @@ class Handle(models.Model):
 
 class Contest(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=255)
     date = models.DateTimeField()
     isSend = models.BooleanField(default=False)
     isParsed = models.BooleanField(default=False)

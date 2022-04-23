@@ -226,7 +226,7 @@ class CheckNewContest(CronJobBase):
                         contest = Contest.objects.get(id = x.id)
                     except :
                         date = datetime.utcfromtimestamp(x.start_time_seconds).replace(tzinfo=pytz.timezone(settings.TIME_ZONE))
-                        contest = Contest(id = x.id , name = x.name , date = date)
+                        contest = Contest(id = x.id , name = str(x.name) , date = date)
                         contest.save()
                     
             #Add one more contest details to database
