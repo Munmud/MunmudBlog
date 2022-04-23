@@ -33,39 +33,46 @@ class CheckNewContest(CronJobBase):
                             contest.save()
                         except Exception as e:
                             print(e)
-                    
+
             #Remove previous contest
-            for contest in Contest.objects.filter(isParsed = True):
-                delta = now-contest.date
-                if (delta.days>5):
-                    print('Deleting ' + contest.name)
-                    temp = contest
-                    contest.delete()
-                    temp.save()
+            try:
+                for contest in Contest.objects.filter(isParsed = True):
+                    delta = now-contest.date
+                    if (delta.days>5):
+                        print('Deleting ' + contest.name)
+                        temp = contest
+                        contest.delete()
+                        temp.save()
+            except Exception as e:
+                print(e)
 
                     
             #Add one more contest details to database
-            obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
-            date = obj.date
-            delta = now-date
-            if (delta.days <=10):
-                print("Initiating...",obj.id,obj.name)
-                saveContestToDatabase(obj)
+            try:
+                obj = Contest.objects.filter(isParsed = False).order_by('tryCount','-date')[:1][0]
+                date = obj.date
+                delta = now-date
+                if (delta.days <=10):
+                    print("Initiating...",obj.id,obj.name)
+                    saveContestToDatabase(obj)
+            except Exception as e:
+                print(e)
 
-
-            #send Latest Contest Mail
-            obj = Contest.objects.filter(isSend = False).order_by('-date')[:1][0]
-            date = obj.date
-            delta = now-date
-            if (delta.days <=2):
-                print('Sending Mail...' , obj.name)
-                sendMail(obj)
-                pass
+            try:
+                #send Latest Contest Mail
+                obj = Contest.objects.filter(isSend = False, isParsed = True).order_by('-date')[:1][0]
+                date = obj.date
+                delta = now-date
+                if (delta.days <=2):
+                    print('Sending Mail...' , obj.name)
+                    sendMail(obj)
+                    pass
+            except :
+                print('All recent mail already sent')
 
 
 
         except Exception as e :
             print(e)
-            pass
 
-        pass    # do your thing here
+
