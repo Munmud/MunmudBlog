@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Post, Comment, EmailSubscriber
+from .models import Category, Post, Comment, EmailSubscriber,Image
 from django.db.models import Count
 import os
 from django.conf import settings
@@ -80,3 +80,4 @@ admin.site.register(Category, CategoryAdmin)
 admin.site.register(EmailSubscriber, EmailSubscriberAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
+admin.site.register(Image)

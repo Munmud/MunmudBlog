@@ -2,4 +2,6 @@
 - bangla font add
 - singleblog template title click
 - resume generator 
-cfRank Email use
+- adding model for uploading image
+- adding automatic email subscriber from cf handle
+- only approaved post are published

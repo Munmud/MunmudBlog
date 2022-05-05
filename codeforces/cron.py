@@ -53,10 +53,10 @@ class CheckNewContest(CronJobBase):
                 print("Initiating...",obj.id,obj.name)
                 saveContestToDatabase(obj)
             except Exception as e:
-                print("ALL recent rank are parsed.",e )
+                print("ALL recent rank are parsed.")
 
+            #send Latest Contest Mail
             try:
-                #send Latest Contest Mail
                 obj = Contest.objects.filter(isSend = False, isParsed = True).order_by('-date')[:1][0]
                 date = obj.date
                 delta = now-date

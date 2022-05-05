@@ -77,6 +77,11 @@ class EmailSubscriber(models.Model):
         return self.email
 
 
+class Image(models.Model):
+    image = models.ImageField(upload_to='postContent/')
+    imageAltText = models.CharField(default='image', max_length=200,null=True, blank=True)
+
+
 # from django.db.models.signals import pre_save
 # from django.dispatch import receiver
 # @receiver(pre_save, sender=Post)

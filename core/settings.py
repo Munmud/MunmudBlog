@@ -7,8 +7,7 @@ SECRET_KEY = str(os.environ.get('SECRET_KEY'))
 DEBUG = str(os.environ.get('DEBUG')) == '1'
 PRODUCTION = str(os.environ.get('PRODUCTION')) == '1'
 ALLOWED_HOSTS = []
-if PRODUCTION :
-    ALLOWED_HOSTS += os.environ.get('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS += os.environ.get('ALLOWED_HOSTS').split(',')
 
 
 INSTALLED_APPS = [
