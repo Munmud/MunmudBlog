@@ -3,6 +3,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.template.defaultfilters import slugify
 from taggit.managers import TaggableManager
+from django.utils.safestring import mark_safe
 
 #Category Model
 class Category(models.Model):
@@ -80,6 +81,10 @@ class EmailSubscriber(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to='postContent/')
     imageAltText = models.CharField(default='image', max_length=200,null=True, blank=True)
+
+    def admin_photo(self):
+        return mark_safe('<img src="{}" width="200" />'.format(self.image.url))
+    # admin_photo.short_des
 
 
 # from django.db.models.signals import pre_save

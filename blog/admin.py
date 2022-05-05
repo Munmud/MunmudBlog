@@ -75,9 +75,13 @@ class EmailSubscriberAdmin(admin.ModelAdmin):
     def make_inactive(self, request, queryset):
         queryset.update(is_active = False)
 
+class ImageAdmin(admin.ModelAdmin):
+    fields = ['image', 'imageAltText']
+    list_display = ( 'admin_photo', 'imageAltText')
+    pass
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(EmailSubscriber, EmailSubscriberAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Comment, CommentAdmin)
-admin.site.register(Image)
+admin.site.register(Image, ImageAdmin)
