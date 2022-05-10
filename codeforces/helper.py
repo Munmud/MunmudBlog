@@ -71,7 +71,7 @@ def sendMail(contest):
                 subject = "Codeforces Rank for " + str(contest.name) 
                 html_message = render_to_string('mail/cfRank.html', context)
                 plain_message = strip_tags(html_message)
-                from_email = 'Codeforces Rank <' + str(os.environ.get('EMAIL_HOST_USER')) + '>'
+                from_email = 'Codeforces Rank @ Moontasir <' + str(os.environ.get('EMAIL_HOST_USER')) + '>'
                 tple = (subject,plain_message,html_message,from_email,[email])
                 datatuple.append(tple)
                 print(handle)
@@ -197,6 +197,8 @@ def saveContestToDatabase(contest):
         handleDetails = requestCodeforcesToGetDetailsOfHandles(standing)
         print('Cf Parse handle-details Count = ', len(handleDetails))
         assert(len(handleDetails) != 0)
+        if contest.tryCount <=10 :
+            assert(len(handleDetails) != len(standing))
         saveRankToDatabase(contest_id = contest.id, contest_ranking = handleDetails)
         assert(len(Rank.objects.filter(contest = contest)) != 0)
         contest.isParsed = True

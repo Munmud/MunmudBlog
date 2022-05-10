@@ -8,7 +8,7 @@ from .helper import saveContestToDatabase, sendMail
 
 
 class CheckNewContest(CronJobBase):
-    RUN_EVERY_MINS = 5 # every 2 hours
+    RUN_EVERY_MINS = 120 # every 2 hours
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'CheckNewContest'    # a unique code

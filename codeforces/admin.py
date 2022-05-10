@@ -4,10 +4,10 @@ from .helper import saveContestToDatabase, sendMail
 # Register your models here.
 
 class HandleAdmin(admin.ModelAdmin):
-    list_display = ('email','isVerified','isActive','handle',)
-    search_fields = ('email','isVerified','handle',)
+    list_display = ('email','isVerified','isActive','handle','firstName','lastName',)
+    search_fields = ('email','isVerified','isActive','handle','firstName','lastName',)
     list_filter = ('isVerified','isActive')
-    list_per_page = 50
+    list_per_page = 100
     actions = ('make_active','make_inactive',)
 
     def make_active(self, request, queryset):

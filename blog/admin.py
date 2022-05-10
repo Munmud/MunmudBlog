@@ -78,7 +78,6 @@ class EmailSubscriberAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
     fields = ['image', 'imageAltText']
     list_display = ( 'admin_photo', 'imageAltText')
-    pass
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(EmailSubscriber, EmailSubscriberAdmin)
